@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { useState } from 'react'
 import css from './Sticker.module.css'
 
 // export const Sticker = ({img, label}) => {
@@ -7,22 +7,22 @@ import css from './Sticker.module.css'
 //     )
 // }
 
-export class Sticker extends Component {
-    state = {
-        visible: false
+export const Sticker = ({ img, label }) => {
+    // state = {
+    //     visible: false
+    // }
+
+    const [visible, setVisible] = useState(false)
+
+    const handleClick = () => {
+        setVisible((prevValue) => !prevValue)
     }
 
-    handleClick = () => {
-        this.setState({ visible: true })
-    }
 
-    render() {
-        const { img, label } = this.props;
         return (
-            <li onClick={this.handleClick} className={css.sticker} >
+            <li onClick={handleClick} className={css.sticker} >
                 <img src={img} alt={label} />
-                {this.state.visible && <p>{label}</p>}
+                {visible && <p>{label}</p>}
             </li>
         )
-    }
 }
